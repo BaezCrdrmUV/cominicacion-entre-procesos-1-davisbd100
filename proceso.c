@@ -8,7 +8,7 @@ main() {
     fp = fopen("test.txt", "r");
     printf("Archivo abierto, leyendo archivo....\n");
     if (fp == NULL){
-      perror("Error wabriendo el archivo, saliendo...\n");
+      perror("Error abriendo el archivo, saliendo...\n");
       return 1;
     }
    printf("El archivo decia: \n");
