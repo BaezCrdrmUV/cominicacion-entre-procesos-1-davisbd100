@@ -1,5 +1,5 @@
 #include <stdio.h> 
-#include <stdlib.h>
+#include <string.h> 
 
 main() {
     char ch;
@@ -15,5 +15,15 @@ main() {
 
    while((ch = fgetc(fp)) != EOF)
       printf("%c", ch);
+    //   if( getrlimit(RLIMIT_NOFILE, &old_lim) == 0) 
+    //     printf("Old limits -> soft limit= %ld \t"
+    //        " hard limit= %ld \n", old_lim.rlim_cur,  
+    //                              old_lim.rlim_max); 
+    // else
+    //     fprintf(stderr, "%s\n", strerror(errno)); 
+
+    printf("\n Obteniendo variables de entorno...\n");
+    const char* environment = getenv("PATH");
+    printf("PATH :%s\n",(environment!=NULL)? environment : "getenv returned NULL");
     return 0;
  }
