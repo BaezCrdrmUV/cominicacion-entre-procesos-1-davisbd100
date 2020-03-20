@@ -17,6 +17,8 @@ main() {
 
    while((ch = fgetc(fp)) != EOF)
       printf("%c", ch);
+    //   Obtener el numero maximo de FD
+
     //   if( getrlimit(RLIMIT_NOFILE, &old_lim) == 0) 
     //     printf("Old limits -> soft limit= %ld \t"
     //        " hard limit= %ld \n", old_lim.rlim_cur,  
@@ -28,10 +30,15 @@ main() {
     const char* environment = getenv("PATH");
     printf("PATH :%s\n",(environment!=NULL)? environment : "getenv returned NULL");
 
-        // printf("Creando un nuevo proceso desde el programa actual...\n");
+    // Crear un nuevo proceso
+    
+    // printf("Creando un nuevo proceso desde el programa actual...\n");
     // char *args[]={"./Proceso",NULL}; 
     // execvp(args[0],args); 
     // return 0;
+
+    // Bloquear el proceso padre
+
     // int status;
     // printf("Bifurcando el proceso actual...\n");
     // int pidchild = fork();
@@ -51,6 +58,9 @@ main() {
     // }
     
     // return 0; 
+
+    // Matar al proceso hijo
+
         int status;
     printf("Bifurcando el proceso actual...\n");
     int pidchild = fork();
