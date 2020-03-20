@@ -1,6 +1,8 @@
 #include <stdio.h> 
 #include <string.h> 
-
+#include <windows.h> 
+#include <sys/wait.h>
+#include <signal.h>
 main() {
     char ch;
     FILE *fp;
@@ -22,8 +24,48 @@ main() {
     // else
     //     fprintf(stderr, "%s\n", strerror(errno)); 
 
-    printf("\n Obteniendo variables de entorno...\n");
+    printf("\nObteniendo variables de entorno...\n");
     const char* environment = getenv("PATH");
     printf("PATH :%s\n",(environment!=NULL)? environment : "getenv returned NULL");
+
+        // printf("Creando un nuevo proceso desde el programa actual...\n");
+    // char *args[]={"./Proceso",NULL}; 
+    // execvp(args[0],args); 
+    // return 0;
+    // int status;
+    // printf("Bifurcando el proceso actual...\n");
+    // int pidchild = fork();
+    // if( 0 == pidchild)
+    // {
+    //     printf( "PID del hijo %ld\n", (long)getpid());
+    //     exit(1);
+    // }
+    // else
+    // {
+    //     printf( "PID del padre: %ld\n", (long)getpid());
+    //      printf("Blockeando el proceso padre... \n");
+    //     if (wait(&status) >= 0)
+    //     {
+    //         printf("Proceso hijo termino con status %d \n", WEXITSTATUS(status));
+    //     }
+    // }
+    
+    // return 0; 
+        int status;
+    printf("Bifurcando el proceso actual...\n");
+    int pidchild = fork();
+    if( 0 == pidchild)
+    {
+        printf( "PID del hijo %ld\n", (long)getpid());
+        printf("Matando al hijo... \n");
+        kill(pidchild, SIGKILL);
+        printf("Hijo muerto... \n");
+    }
+    else
+    {
+        printf( "PID del padre: %ld\n", (long)getpid());
+    }
+  
     return 0;
+
  }
